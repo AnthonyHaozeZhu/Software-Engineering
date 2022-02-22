@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.24)  22 FEB 2022 21:30
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.3.24)  22 FEB 2022 21:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -742,31 +742,34 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 29.
 
-Underfull \hbox (badness 10000) in paragraph at lines 41--86
+Underfull \hbox (badness 10000) in paragraph at lines 41--90
 
  []
 
-[1] [2] [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
+[1]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2] [3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
  (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 107.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 107.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 111.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 64016E011043F04EEDBAD62C1607B73F;153.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 107.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
  ) 
 Here is how much of TeX's memory you used:
  23185 strings out of 479418
  449988 string characters out of 5884585
- 751031 words of memory out of 5000000
+ 752031 words of memory out of 5000000
  40191 multiletter control sequences out of 15000+600000
  557223 words of font info for 73 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
- 51i,9n,69p,480b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,9n,69p,480b,552s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on main.pdf (3 pages).
