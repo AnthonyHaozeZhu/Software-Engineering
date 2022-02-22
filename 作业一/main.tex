@@ -3,6 +3,7 @@
 \usepackage{xeCJK}
 \usepackage{amsmath}
 \usepackage{booktabs} %表格
+\usepackage{longtable}
 % \setmainfont{Times New Roman}
 \setCJKmainfont{Kaiti SC}
 % \setCJKfamilyfont{song}{Songti SC}
@@ -27,20 +28,80 @@
 \begin{itemize}
 	\item 关于网络环境
 		\begin{itemize}
-			\item[$\circ$] \textbf{Github}  网络环境不是很稳定，国内用户经常需要利用科学上网的方式才能链接登陆或上传、拉取仓库
-			\item[$\circ$] \textbf{Gitlab}  网络环境在可以使用是较好，但有时服务器会宕机维护，这段时间内通过任何方法都无法登陆或上传拉取自己的仓库
-			\item[$\circ$] \textbf{Gitee}  目前国内由阿里巴巴提供服务， 网络问题相对较少
+			\item[$\circ$] \textbf{Github}  网络环境不是很稳定，国内用户经常需要利用科学上网的方式才能链接登陆或上传、拉取仓库。
+			\item[$\circ$] \textbf{Gitlab}  网络环境在可以使用是较好，但有时服务器会宕机维护，这段时间内通过任何方法都无法登陆或上传拉取自己的仓库。
+			\item[$\circ$] \textbf{Gitee}  目前国内由深圳市奥思网络科技有限公司版权所有提供服务， 网络问题相对较少。
 		\end{itemize}
-	\item 
+	\item 关于联合生态 
+		\begin{itemize}
+			\item[$\circ$] \textbf{Github}  与许多集成开发环境有着紧密联系，比如vs code、overleaf等众多集成终端，与此同时世界上许多的主流程序员社区也都支持用github登陆，其生态环境是另外两个代码托管平台不能匹敌的。
+			\item[$\circ$] \textbf{Gitlab}  GitLab被IBM，Sony，JülichResearchCenter，NASA，Alibaba，Invincea，O’ReillyMedia，Leibniz-Rechenzentrum(LRZ)，CERN，SpaceX等组织使用。但面向大众的合作的终端或社区相对较少，生态环境相对较为闭塞。
+			\item[$\circ$] \textbf{Gitee}   与国内一些主流产品进行合作，如提供微信小程序等，同时也提供主流浏览器的插件（但优化一般，更新不及时）以及一些集成编译器的插件，总体来说生态环境在国内市场较好，但放眼世界相对github。 
+		\end{itemize} 
+	\item 关于功能
+		\begin{table}[!htbp]
+			\centering
+			\begin{tabular}{ccccccccccc}
+			\toprule  
+			& \textbf{GitHub}& \textbf{Gitee}& \textbf{Gitlab}\\
+				\midrule
+				代码托管，支持 Git/SVN& 仅支持git & 均支持& 仅支持git	\\	
+				开源项目、代码片段& 支持 &支持&支持		\\
+				Issue& 	支持 &支持&支持		\\
+				Wiki& 	支持 &支持&支持		\\
+				Fork + Pull Request	& 支持 &支持&支持		\\
+				组织& 	支持 &支持&支持		\\
+				在线 IDE& 不支持& 支持& 支持\\
+				\bottomrule
+			\end{tabular}
+			\caption{功能表}
+		\end{table}
+		\begin{table}[!htbp]
+			\centering
+			\begin{tabular}{ccccccccccc}
+			\toprule  
+			 & \textbf{GitHub}& \textbf{Gitee}& \textbf{Gitlab}\\
+				\midrule
+				仓库自动备份& 	不支持& 支持& 不支持&\\
+				禁止 Git 强推& 	不支持&  支持& 不支持&\\
+				支持仓库访问 IP 限制& 不支持& 支持& 不支持&\\
+				企业级研发协作& 收费 &五人免费& 不支持&\\
+				敏捷开发管理& 不支持&	支持&	不支持&\\
+				任务看板（可灵活定义）& 不支持& 支持& 不支持&\\		
+				支持多级任务、关联任务& 不支持& 支持& 不支持&\\		
+				自动代码质量分析& 不支持& 支持&	不支持&\\	
+				快捷生成工作周报& 不支持& 支持&	不支持&\\	
+				代码克隆检测& 不支持& 支持&	不支持&\\
+				自动生成 JavaDoc/PHPDoc	& 不支持& 支持&	不支持&\\
+				多语言 README 自动渲染& 不支持&	 支持& 不支持&\\	
+				支持微信/钉钉通知& 	不支持&	支持& 不支持&\\
+				完善的管理界面& 不支持& 不支持& 支持\\
+				完善的权限控制& 局限& 局限& 完善\\
+				订阅& 支持& 支持& 支持\\
+				\bottomrule
+			\end{tabular}
+			\caption{功能表(续)}
+		\end{table}
+		\\
+		\par 可以看出，gitee推出了一些新功能。这些功能大多数针对公司的项目开发环境，并且与中国市场上的主流软件和工作环境紧密结合，可以在一定程度上提高工作效率。但这三个代码托管平台在基本功能上并无本质区别，其提供的服务基本可以保证日常使用需求。
+	\item 关于语言
+		\begin{itemize}
+			\item[$\circ$] \textbf{Github} 仅有英文版本，对中国用户不够友好
+			\item[$\circ$] \textbf{Gitlab} 支持中文
+			\item[$\circ$] \textbf{Gitee} 支持中文 
+		\end{itemize}
+	\item 使用场景
+		\begin{itemize}
+			\item[$\circ$] \textbf{Github} 世界上最大的开源代码托管平台，汇聚了世界上大多数的开源顶尖项目，可以帮助程序员之间互相交流和学习，也可以参与各式各样的开源项目以及托管自己的代码仓库。
+			\item[$\circ$] \textbf{Gitlab} 基于Git实现的在线代码仓库软件，可以用GitLab搭建一个类似于GitHub一样的仓库，但是GitLab有完善的管理界面和权限控制，具有较强的可塑性和自定义性，一般用于在企业、学校等内部网络搭建Git私服。
+			\item[$\circ$] \textbf{Gitee} 全中文环境，而且大部分用户都是国人，不会出现不稳定情况，但优秀的库相对于GitHub也少。提供免费的 Git 仓库，还集成了代码质量检测、项目演示等功能。对于团队协作开发，Gitee 还提供了项目管理、代码托管、文档管理的服务，5人以下小团队免费等许多面向中国特色的功能，适合中国公司团队做开发项目使用。
+
+		\end{itemize}
 \end{itemize}
 
-\question 开发一个代码托管平台应如何改进？
 
-答：开发一个代码托管平台，我认为第一步的要做的事情是去调研了解用户需求。
+\question \large{开发一个代码托管平台应如何改进？}
 
-
-
-
-
+\normalsize 答：开发一个代码托管平台，我认为第一步的要做的事情是去调研了解用户需求。
 
 \end{document}
