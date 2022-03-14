@@ -14,16 +14,35 @@ class MSA:
     """
     用于计算集合中子集的最大值
     """
-    array_ls = []
-    result = 0
 
-    def __init__(self, array_ls):
+    def __init__(self):
         """
         启动函数
-        :param array_ls:输入的集合
         """
-        self.array_ls = np.array(array_ls)
+        self.array_ls = []
         self.result = 0
+
+    def get_set(self):
+        """
+        给集合赋值
+        :return:
+        """
+        set_length = 0
+        try:
+            set_length = int(input('请输入集合长度:'))
+        except ValueError:
+            print("Error: 请输入整数")
+
+        if set_length < 0:
+            raise Exception("请输入大于0的整数")
+
+        while set_length > 0:
+            try:
+                self.array_ls.append(int(input("请输入该集合的元素")))
+                set_length -= 1
+            except ValueError:
+                print("Error: 请输入整数")
+        self.array_ls = np.array(self.array_ls)
 
     def sum_maxset(self):
         """
@@ -39,20 +58,20 @@ class MSA:
         return self.result
 
 
-def main(in_ls):
-    """
-    主函数
-    :param in_ls:
-    :return: 最大值
-    """
-    msa = MSA(in_ls)
-    return msa.sum_maxset()
+# def main():
+#     """
+#     初始化该类
+#     :return:
+#     """
+#     msa = MSA()
+#     msa.get_set()
+#     msa.sum_maxset()
+#
+#
+# if __name__ == '__main__':
+#     print("hello world!")
+#     main()
 
-
-if __name__ == '__main__':
-    length = int(input("请输入数组长度:"))
-    ls = []
-    for i in range(length):
-        ls.append(int(input()))
-    print("最大值为:", main(ls))
-
+msa = MSA()
+msa.get_set()
+msa.sum_maxset()
