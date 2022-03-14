@@ -18,7 +18,7 @@ class MSA:
         """
         self.array_ls = []
         self.result = 0
-        self.sub_list = []
+        self.sub_index = []
 
     def get_set(self, in_set):
         """
@@ -35,25 +35,29 @@ class MSA:
         # 判断是否全为负数
         max_item = float('-inf')
         is_allneg = True
-        for index in self.array_ls:
-            if index >= 0:
+        total_length = len(self.array_ls)
+        for index in range(total_length):
+            if self.array_ls[index] >= 0:
                 is_allneg = False
+                self.sub_index.clear()
                 break
-            if index > max_item:
-                max_item = index
+            if self.array_ls[index] > max_item:
+                max_item = self.array_ls[index]
+                self.sub_index.clear()
+                self.sub_index.append(index)
         if is_allneg:
             return max_item
         # 如果不是
         total = 0
-        total_length = len(self.array_ls)
         for i in range(total_length):
             total += self.array_ls[i]
-            if total > self.result:
+            if total >= self.result:
                 self.result = total
-                self.sub_list.append(i)
+                self.sub_index.append(i)
             elif total < 0:
                 total = 0
-                self.sub_list.clear()
+                if i != total_length - 1:
+                    self.sub_index.clear()
         return self.result
 
     def get_sublist(self):
@@ -61,18 +65,18 @@ class MSA:
         获得最大数组
         :return: 最大值集合
         """
-        return self.sub_list
+        return self.array_ls[self.sub_index[0]: self.sub_index[-1] + 1]
 
 
 def main(the_set):
     """
     自动进行生成
     :param msa: 初始化过的MSA类
-    :return:求得的值
+    :return:求得的值, 最大的数组集合
     """
     msa = MSA()
     msa.get_set(in_set=the_set)
-    return msa.sum_maxset()
+    return msa.sum_maxset(), msa.get_sublist()
 
 
 if __name__ == '__main__':
@@ -91,5 +95,6 @@ if __name__ == '__main__':
             length -= 1
         except ValueError:
             print("Error: 请输入整数")
-    main(array_ls)
-    print("最终结果是", main(array_ls))
+    result_sum, result_list = main(array_ls)
+    print("最大子数组的和是：", result_sum)
+    print("最大子数组是：", result_list)
