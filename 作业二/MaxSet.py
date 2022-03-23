@@ -68,15 +68,26 @@ class MSA:
         return self.array_ls[self.sub_index[0]: self.sub_index[-1] + 1]
 
 
-def main(the_set):
+def get_sum(the_set):
     """
     自动进行生成
-    :param msa: 初始化过的MSA类
-    :return:求得的值, 最大的数组集合
+    :param the_set:要处理的集合
+    :return: 求得的值
     """
     msa = MSA()
     msa.get_set(in_set=the_set)
-    return msa.sum_maxset(), msa.get_sublist()
+    return msa.sum_maxset()
+
+
+def get_list(the_set):
+    """
+    :param the_set: 要处理的集合
+    :return:最大的数组集合
+    """
+    msa = MSA()
+    msa.get_set(in_set=the_set)
+    msa.sum_maxset()
+    return msa.get_sublist()
 
 
 if __name__ == '__main__':
@@ -95,6 +106,7 @@ if __name__ == '__main__':
             length -= 1
         except ValueError:
             print("Error: 请输入整数")
-    result_sum, result_list = main(array_ls)
+    result_sum = get_sum(array_ls)
+    result_list = get_list(array_ls)
     print("最大子数组的和是：", result_sum)
     print("最大子数组是：", result_list)

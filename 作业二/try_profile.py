@@ -7,5 +7,13 @@
 """
 
 import profile
+import MaxSet
+import numpy as np
 
-profile.run("MaxSet.main()")
+test1 = list(np.random.randint(-50, 50, size=1000))
+test2 = list(np.random.randint(-50, 50, size=1000))
+
+test_module = MaxSet
+
+# profile.run(test_module.get_list(test1))
+profile.run(test_module.get_sum(the_set=test2))

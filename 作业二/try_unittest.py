@@ -16,10 +16,14 @@ class Testing(unittest.TestCase):
     测试
     """
 
-    def test_main(self):
-        self.assertEqual(MaxSet.main([-1, 2, 3, -4]), (5, [2, 3]))
-        self.assertEqual(MaxSet.main([-1, 2, -5, 3, -4]), (3, [3]))
-        self.assertEqual(MaxSet.main([-1, 20, -5, 30, -4]), (45, [20, -5, 30]))
-        # self.assertEqual(MaxSet.main([-2, -3, -5, -1, -9]), (-1, [-1]))
+    def test_getsum(self):
+        self.assertEqual(MaxSet.get_sum([-1, 2, 3, -4]), 5)
+        self.assertEqual(MaxSet.get_sum([-1, 2, -5, 3, -4]), 3)
+        self.assertEqual(MaxSet.get_sum([-1, 20, -5, 30, -4]), 45)
+        self.assertEqual(MaxSet.get_sum([-2, -3, -5, -1, -9]), -1)
 
-
+    def test_getlist(self):
+        self.assertEqual(MaxSet.get_list([-1, 2, 3, -4]), [2, 3])
+        self.assertEqual(MaxSet.get_list([-1, 2, -5, 3, -4]), [3])
+        self.assertEqual(MaxSet.get_list([-1, 20, -5, 30, -4]), [20, -5, 30])
+        self.assertEqual(MaxSet.get_list([-2, -3, -5, -1, -9]), [-1])
