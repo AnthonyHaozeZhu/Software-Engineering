@@ -5,7 +5,9 @@
 @Author ：AnthonyZ
 @Date ：2022/3/14 16:08
 """
+from ast import literal_eval
 
+import numpy as np
 
 class MSA:
     """
@@ -19,6 +21,7 @@ class MSA:
         self.array_ls = []
         self.result = 0
         self.sub_index = []
+        self.shape = 0
 
     def get_set(self, in_set):
         """
@@ -26,31 +29,55 @@ class MSA:
         :return:
         """
         self.array_ls = in_set
+        self.shape = len(np.array(array_ls).shape)
 
     def sum_maxset(self):
         """
-        计算最大值集合
+        对其进行处理
+        :return:
+        """
+        if self.shape == 1:
+            return self.max_list(self.array_ls)
+        if self.shape == 2:
+            temp_sum = float('-inf')
+            for i in range(len(self.array_ls)):
+                temp_list = [0 for temp in range(len(self.array_ls))]
+                for j in range(i, len(self.array_ls)):
+                    for h_index in range(len(self.array_ls[0])):
+                        temp_list[h_index] += array_ls[j][h_index]
+                    temp_max = self.max_list(temp_list)
+                    if temp_max > temp_sum:
+                        temp_sum = temp_max
+            self.result = temp_sum
+            return self.result
+
+        print("程序出错")
+        return float('-inf')
+
+    def max_list(self, temp_list):
+        """
+        计算一维数组最大值集合
         :return: 最大值
         """
         # 判断是否全为负数
         max_item = float('-inf')
         is_allneg = True
-        total_length = len(self.array_ls)
-        for index in range(total_length):
-            if self.array_ls[index] >= 0:
+        total_length = len(temp_list)
+        for j in range(total_length):
+            if temp_list[j] >= 0:
                 is_allneg = False
                 self.sub_index.clear()
                 break
-            if self.array_ls[index] > max_item:
-                max_item = self.array_ls[index]
+            if temp_list[j] > max_item:
+                max_item = temp_list[j]
                 self.sub_index.clear()
-                self.sub_index.append(index)
+                self.sub_index.append(j)
         if is_allneg:
             return max_item
         # 如果不是
         total = 0
         for i in range(total_length):
-            total += self.array_ls[i]
+            total += temp_list[i]
             if total >= self.result:
                 self.result = total
                 self.sub_index.append(i)
@@ -86,6 +113,8 @@ def get_list(the_set):
     """
     msa = MSA()
     msa.get_set(in_set=the_set)
+    if msa.shape == 2:
+        return "暂不支持本功能，敬请期待！"
     msa.sum_maxset()
     return msa.get_sublist()
 
@@ -93,20 +122,34 @@ def get_list(the_set):
 if __name__ == '__main__':
     array_ls = []
     try:
-        length = int(input('请输入集合长度:'))
-    except ValueError:
-        print("Error: 请输入整数")
-
-    if length < 0:
-        raise Exception("请输入大于0的整数")
-
-    while length > 0:
-        try:
-            array_ls.append(int(input("请输入该集合的元素")))
-            length -= 1
-        except ValueError:
-            print("Error: 请输入整数")
+        array_ls = literal_eval(input("请输入矩阵或向量，输入格式参照[[1, 2 ,3], [4, 5, 6]]或[1, 2, 3, 4], [1, 2, 3, 4]:"))
+    except SyntaxError or ValueError:
+        print("非法输入!")
+    except TypeError:
+        print("请按照格式输入！")
+    if isinstance(array_ls, tuple):
+        array_ls = list(array_ls)
+    elif isinstance(array_ls, int):
+        array_ls = [array_ls]
+    if isinstance(array_ls, list):
+        temp = np.array(array_ls)
+        if len(temp.shape) == 1:
+            for index in array_ls:
+                if not isinstance(index, int):
+                    print("非法输入!")
+        elif len(temp.shape) == 2:
+            for index_1 in array_ls:
+                for index_2 in index_1:
+                    if not isinstance(index_2, int):
+                        print("非法输入！")
+        else:
+            print("Sorry!本程序现在仅支持一维或二维数组")
+    else:
+        print("非法输入!")
     result_sum = get_sum(array_ls)
     result_list = get_list(array_ls)
     print("最大子数组的和是：", result_sum)
     print("最大子数组是：", result_list)
+
+
+#[[-15, -21,5, -12], [-7, 21, 20, 12], [21, 0, -1, 13], [10, 20, -10, -18]]
