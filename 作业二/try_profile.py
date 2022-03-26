@@ -6,16 +6,32 @@
 @Date ：2022/3/14 17:26
 """
 
-import cProfile
-import MaxSet
+import yappi
 import numpy as np
+import MaxSet
 
-test1 = list(np.random.randint(-50, 50, size=1000))
-test2 = list(np.random.randint(-50, 50, size=1000))
 
-test_module = MaxSet
-print(MaxSet.get_sum(test1))
-print(MaxSet.get_list(test1))
+yappi.clear_stats()
+test1 = [np.random.randint(1, 1000) for i in range(100000000)]
+test2 = [np.random.rand() for i in range(100000000)]
+test3 = [[np.random.randint(1, 1000) for i in range(10000)] for j in range(10000)]
+yappi.start()
+MaxSet.get_list(test1)
+yappi.stop()
+stats = yappi.convert2pstats(yappi.get_func_stats())
+stats.sort_stats("cumulative")
+stats.print_stats()
 
-# profile.run(test_module.get_list(test1))
-# cProfile.run('MaxSet.get_list(test1)')
+yappi.start()
+MaxSet.get_list(test2)
+yappi.stop()
+stats = yappi.convert2pstats(yappi.get_func_stats())
+stats.sort_stats("cumulative")
+stats.print_stats()
+
+yappi.start()
+MaxSet.get_list(test3)
+yappi.stop()
+stats = yappi.convert2pstats(yappi.get_func_stats())
+stats.sort_stats("cumulative")
+stats.print_stats()
