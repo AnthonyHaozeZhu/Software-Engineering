@@ -29,7 +29,7 @@ class MSA:
         :return:
         """
         self.array_ls = in_set
-        self.shape = len(np.array(array_ls).shape)
+        self.shape = len(np.array(self.array_ls).shape)
 
     def sum_maxset(self):
         """
@@ -41,10 +41,10 @@ class MSA:
         if self.shape == 2:
             temp_sum = float('-inf')
             for i in range(len(self.array_ls)):
-                temp_list = [0 for temp in range(len(self.array_ls))]
+                temp_list = [0 for temp in range(len(self.array_ls[0]))]
                 for j in range(i, len(self.array_ls)):
                     for h_index in range(len(self.array_ls[0])):
-                        temp_list[h_index] += array_ls[j][h_index]
+                        temp_list[h_index] += self.array_ls[j][h_index]
                     temp_max = self.max_list(temp_list)
                     if temp_max > temp_sum:
                         temp_sum = temp_max
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     array_ls = []
     try:
         array_ls = literal_eval(input("请输入矩阵或向量，输入格式参照[[1, 2 ,3], [4, 5, 6]]或[1, 2, 3, 4], [1, 2, 3, 4]:"))
-    except SyntaxError or ValueError:
+    except (SyntaxError, ValueError):
         print("非法输入!")
     except TypeError:
         print("请按照格式输入！")
@@ -150,6 +150,3 @@ if __name__ == '__main__':
     result_list = get_list(array_ls)
     print("最大子数组的和是：", result_sum)
     print("最大子数组是：", result_list)
-
-
-#[[-15, -21,5, -12], [-7, 21, 20, 12], [21, 0, -1, 13], [10, 20, -10, -18]]
