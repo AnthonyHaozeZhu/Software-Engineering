@@ -66,3 +66,14 @@ class Testing(unittest.TestCase):
         self.assertEqual(MaxSet.get_sum([[10.0, 1.0, -50.0, 3.0, 34.0],
                                          [-3.0, 25.0, -25.0, 50.0, -34.0],
                                          [-8.0, 9.0, 7.0, -31.0, -2.0]]), 53)
+
+    @unittest.expectedFailure
+    def test_error(self):
+        self.assertEqual(MaxSet.get_sum([[[10.0, 1.0, -50.0, 3.0, 34.0],
+                                         [-3.0, 25.0, -25.0, 50.0, -34.0],
+                                         [-8.0, 9.0, 7.0, -31.0, -2.0]], [[1]]]), 53)
+        self.assertEqual(MaxSet.get_sum([[-50.0, 3.0, 34.0],
+                                         [-3.0, 25.0, -25.0, 50.0, -34.0],
+                                         [-8.0, 9.0, 7.0, -31.0, -2.0]]), 53)
+        self.assertEqual(MaxSet.get_sum(['a', 'b', 'c']), 1)
+        self.assertEqual(MaxSet.get_sum(1), 1)
