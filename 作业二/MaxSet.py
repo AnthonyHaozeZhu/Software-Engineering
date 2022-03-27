@@ -135,13 +135,17 @@ if __name__ == '__main__':
         temp = np.array(array_ls)
         if len(temp.shape) == 1:
             for index in array_ls:
-                if not isinstance(index, int):
+                try:
+                    assert isinstance(index, (int, float))
+                except AssertionError:
                     print("非法输入!")
         elif len(temp.shape) == 2:
             for index_1 in array_ls:
                 for index_2 in index_1:
-                    if not isinstance(index_2, int):
-                        print("非法输入！")
+                    try:
+                        assert isinstance(index_2, (int, float))
+                    except AssertionError:
+                        print("非法输入!")
         else:
             print("Sorry!本程序现在仅支持一维或二维数组")
     else:
