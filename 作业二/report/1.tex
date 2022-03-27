@@ -386,6 +386,7 @@ class Testing(unittest.TestCase):
          self.assertEqual(MaxSet.get_list([-1.0, 20.0, -5.0, 30.0, -4.0]), [20.0, -5.0, 30.0])
          self.assertEqual(MaxSet.get_list([-1.0, 20.0, -5, 30, -4]), [20.0, -5, 30])
          self.assertEqual(MaxSet.get_list([-2, -3, -5, -1, -9]), [-1])
+         self.assertEqual(MaxSet.get_list([[-2], [-3]]), "暂不支持本功能，敬请期待！")
 
       def test_sum2D(self):
          self.assertEqual(MaxSet.get_sum([[-1, -1],
@@ -454,12 +455,34 @@ class Testing(unittest.TestCase):
          mock_input.return_value = "['a', 'b', 'c']"
          self.assertRaises(BaseException, MaxSet.get_in(), AssertionError)
 
-         mock_input.return_value = "[['a'], ['b'], ['c']]"
+         mock_input.return_value = "[['a'], ['b']]"
          self.assertRaises(BaseException, MaxSet.get_in(), AssertionError)
+
+         mock_input.return_value = '[[1], [2], [3]]'
+         self.assertRaises(BaseException, MaxSet.get_in(), TypeError)
+
+
+if __name__ == "__main__":
+      suite = unittest.TestSuite()
+
+      tests = [Testing("test_getsum"), Testing("test_getlist"),Testing("test_sum2D"), Testing("test_in"), Testing("test_error")]
+      suite.addTests(tests)
+
+      with open('./TestResult.txt','w') as file:
+         runner = unittest.TextTestRunner(stream=file, verbosity=2)
+         runner.run(suite)
 \end{lstlisting}
 \begin{center}
    \includegraphics[scale = 1]{31.png}
 \end{center}
-由上图可见，按照条件覆盖，所有的可能条件都被考虑到，条件覆盖率为100\%，且我们的测试通过率为100\%。
+由上图可见，我们的测试通过率为100\%，我们在终端输入coverage run try\_unittest.py和coverage html -d my\_coverage\_result后生成了语句覆盖率报告，其图片如下
+\begin{center}
+   \includegraphics[scale = 0.8]{5}
+\end{center}
+可以看到我们的语句覆盖率为88\%，点击进去细看如下图：
+\begin{center}
+   \includegraphics[scale = 0.2]{4}
+\end{center}
+可以看出我们因为测试的是输入体是各个函数，所以主函数没有被覆盖，但这并不影响；剩下的是为了可能出现的计算机错误（而非程序自身bug）准备的错误处理，这一部分无法通过样例测试，故整体语句基本全部覆盖。
 \end{document}
 
