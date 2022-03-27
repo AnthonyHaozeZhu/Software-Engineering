@@ -118,8 +118,11 @@ def get_list(the_set):
     msa.sum_maxset()
     return msa.get_sublist()
 
-
-if __name__ == '__main__':
+def get_in():
+    """
+    输入函数，包括错误处理
+    :return: 输入的矩阵
+    """
     array_ls = []
     try:
         array_ls = literal_eval(input("请输入矩阵或向量，输入格式参照[[1, 2 ,3], [4, 5, 6]]或[1, 2, 3, 4], [1, 2, 3, 4]:"))
@@ -148,9 +151,16 @@ if __name__ == '__main__':
                         print("非法输入!")
         else:
             print("Sorry!本程序现在仅支持一维或二维数组")
+            return TypeError
     else:
         print("非法输入!")
-    result_sum = get_sum(array_ls)
-    result_list = get_list(array_ls)
+        return TypeError
+    return array_ls
+
+
+if __name__ == '__main__':
+    temp_ls = get_in()
+    result_sum = get_sum(temp_ls)
+    result_list = get_list(temp_ls)
     print("最大子数组的和是：", result_sum)
     print("最大子数组是：", result_list)
