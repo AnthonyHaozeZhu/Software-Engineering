@@ -52,7 +52,7 @@ class MSA:
             return self.result
 
         print("程序出错")
-        return float('-inf')
+        return TypeError
 
     def max_list(self, temp_list):
         """

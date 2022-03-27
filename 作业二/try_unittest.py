@@ -34,6 +34,7 @@ class Testing(unittest.TestCase):
         self.assertEqual(MaxSet.get_list([-1.0, 20.0, -5.0, 30.0, -4.0]), [20.0, -5.0, 30.0])
         self.assertEqual(MaxSet.get_list([-1.0, 20.0, -5, 30, -4]), [20.0, -5, 30])
         self.assertEqual(MaxSet.get_list([-2, -3, -5, -1, -9]), [-1])
+        self.assertEqual(MaxSet.get_list([[-2], [-3]]), "暂不支持本功能，敬请期待！")
 
     def test_sum2D(self):
         self.assertEqual(MaxSet.get_sum([[-1, -1],
@@ -89,19 +90,32 @@ class Testing(unittest.TestCase):
         self.assertEqual(MaxSet.get_in(), [1, 2])
 
     @patch('builtins.input')
-    @unittest.expectedFailure
     def test_error(self, mock_input):
-        self.assertEqual(MaxSet.get_sum([[[10.0, 1.0, -50.0, 3.0, 34.0],
-                                         [-3.0, 25.0, -25.0, 50.0, -34.0],
-                                         [-8.0, 9.0, 7.0, -31.0, -2.0]], [[1]]]), 53)
+        self.assertRaises(BaseException, MaxSet.get_sum([[1], [2], [3]]), TypeError)
 
         mock_input.return_value = '[1, 2 ,'
-        self.assertEqual(MaxSet.get_in(), 1)
+        self.assertRaises(BaseException, MaxSet.get_in(), TypeError)
 
         mock_input.return_value = '[[-50.0, 3.0, 34.0], ' \
                                   '[-3.0, 25.0, -25.0, 50.0, -34.0], [-8.0, 9.0, 7.0, -31.0, -2.0]])'
-        self.assertEqual(MaxSet.get_in(), 53)
+        self.assertRaises(BaseException, MaxSet.get_in(), TypeError)
 
         mock_input.return_value = "['a', 'b', 'c']"
-        self.assertEqual(MaxSet.get_in(), 1)
+        self.assertRaises(BaseException, MaxSet.get_in(), AssertionError)
 
+        mock_input.return_value = "[['a'], ['b']]"
+        self.assertRaises(BaseException, MaxSet.get_in(), AssertionError)
+
+        mock_input.return_value = '[[1], [2], [3]]'
+        self.assertRaises(BaseException, MaxSet.get_in(), TypeError)
+
+
+if __name__ == "__main__":
+    suite = unittest.TestSuite()
+
+    tests = [Testing("test_getsum"), Testing("test_getlist"),Testing("test_sum2D"), Testing("test_in"), Testing("test_error")]
+    suite.addTests(tests)
+
+    with open('./TestResult.txt','w') as file:
+        runner = unittest.TextTestRunner(stream=file, verbosity=2)
+        runner.run(suite)
