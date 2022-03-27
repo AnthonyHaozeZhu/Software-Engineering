@@ -8,6 +8,6 @@
 import pylint.lint
 
 
-pylint_opts = ['--rcfile=PylintConfig.conf', '-rn', './MaxSet.py']
+pylint_opts = ['--rcfile=PylintConfig.conf', '-ry', './MaxSet.py']
 
 pylint.lint.Run(pylint_opts)
