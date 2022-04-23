@@ -1,0 +1,84 @@
+%! Tex program = xelatex   
+\documentclass{article}
+\usepackage{graphicx,subfig}
+\usepackage[left=2cm, right=2cm, lines=45, top=0.8in, bottom=0.7in]{geometry}
+\usepackage{xeCJK}
+\usepackage{amsmath}
+\usepackage{booktabs} %表格
+\usepackage{tikz}
+\usepackage{graphics}
+\usepackage{xcolor} 
+\usepackage{tikz} 
+\usepackage{svg}
+\usetikzlibrary{arrows,shapes,chains}
+\setmainfont{Times New Roman}
+\setCJKmainfont{Songti SC}
+\setCJKfamilyfont{song}{Songti SC}
+\renewcommand{\baselinestretch}{1.5} %行间距
+%-----------------------伪代码------------------
+\usepackage{algorithm}  
+\usepackage{algorithmicx}  
+\usepackage{algpseudocode}  
+\floatname{algorithm}{Algorithm}  
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  
+\renewcommand{\algorithmicensure}{\textbf{Output:}} 
+\usepackage{lipsum}  
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+  \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+      {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+      \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+      \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+      \fi
+      \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+  \end{center}
+  }
+\makeatother
+%------------------------代码-------------------
+\usepackage{xcolor} 
+\usepackage{listings} 
+\usepackage{fontspec}
+\newfontfamily\menlo{Menlo}
+\setmonofont[Mapping={}]{Monaco} 
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+backgroundcolor=\color{white},   % choose the background color
+basicstyle=\footnotesize\ttfamily,        % size of fonts used for the code
+columns=fullflexible,
+breaklines=true,                 % automatic line breaking only at whitespace
+captionpos=b,                    % sets the caption-position to bottom
+tabsize=4,
+commentstyle=\color{mygreen},    % comment style
+escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+keywordstyle=\color{blue},       % keyword style
+stringstyle=\color{mymauve}\ttfamily,     % string literal style
+frame=single,
+rulesepcolor=\color{red!20!green!20!blue!20},
+numbers=left,
+ numberstyle=\tiny\menlo
+identifierstyle=\color{red},
+% language=c++,
+}
+\begin{document}
+\title{核酸检测登记系统}
+\author{朱浩泽 1911530 \ \ \ 何坤彬 1911417}
+\maketitle
+\section{软件需求和设计}
+\large
+\subsection{需求背景}
+2020年伊始，一场突如其来的新型冠状病毒肺炎疫情，在春节期间突袭神州大地，面对困难，举国上下团结一心，共同投入到抗击疫情的工作中。在党中央坚强领导下，中国人民风雨同舟、众志成城，发扬一方有难、八方支援精神，构筑起疫情防控的坚固防线。广大医务人员白衣为甲、逆行出征，为保障人民的健康，进行了一轮又一轮的健康监测。而这些检测结果的数据量是庞大的，这就需要我们对海量的信息进行有效的组织管理，来确保信息的准确性和完整性。于是，我们计划开发一款核酸检测登记系统。
+\subsection{系统设计思路}
+在拥有需求之后，我们可以对我们的系统进行设计。首先，核酸登记系统需要识别被登记人，而如果用人名作为登记人员的信息，可能会有很多重名的人员导致信息混乱。所以我们需要选取每个人都具有的且为独一无二的表示方式，身份证号可以很好的承载着我们的需求，故选取身份证号作为登记人员的身份标识。
+
+\end{document}

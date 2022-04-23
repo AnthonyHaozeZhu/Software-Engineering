@@ -1,0 +1,10 @@
+test_getsum (__main__.Testing) ... ok
+test_getlist (__main__.Testing) ... ok
+test_sum2D (__main__.Testing) ... ok
+test_in (__main__.Testing) ... ok
+test_error (__main__.Testing) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK
